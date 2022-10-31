@@ -1,0 +1,25 @@
+version: "3.9"
+volumes:
+  db-store:
+  vendor-store:
+  node_modules-store:
+services:
+  phptools:
+    build:
+      context: .
+      dockerfile: ./infra/docker/phptools/Dockerfile
+    volumes:
+      - type: bind
+        source: ../${SRC_DIR:-src}
+        target: /var/www/${SRC_DIR:-src}
+      - type: bind
+        source: ./phptools
+        target: /var/www/phptools
+      - type: volume
+        source: vendor-store
+        target: /var/www/${SRC_DIR:-src}/vendor
+      - type: volume
+        source: node_modules-store
+        target: /var/www/${SRC_DIR:-src}/node_modules
+    environment:
+      - SRC_DIR=${SRC_DIR:-src}
