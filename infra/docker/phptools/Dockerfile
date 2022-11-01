@@ -1,4 +1,5 @@
-FROM php:8.1-fpm
+ARG docker_php_version
+FROM php:${docker_php_version}-fpm
 
 WORKDIR /var/www/phptools
 
@@ -12,7 +13,7 @@ ENV TZ=UTC \
   COMPOSER_ALLOW_SUPERUSER=1 \
   COMPOSER_HOME=/composer
 
-COPY --from=composer:2.3 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.2 /usr/bin/composer /usr/bin/composer
 
 RUN apt-get update \
   && apt-get -y install --no-install-recommends \

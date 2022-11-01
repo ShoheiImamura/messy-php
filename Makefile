@@ -3,9 +3,9 @@ include .env
 phptools-init:
 	@make phptools-build
 	@make phptools-up
-	@make phptools-composer-require-rector
-	@make phptools-composer-require-phpinsights
 	@make phptools-composer-require-php-cs-fixer
+	@make phptools-composer-require-phpinsights
+	@make phptools-composer-require-rector
 	@make phptools-composer-install
 phptools-restart:
 	@make phptools-down
@@ -29,6 +29,9 @@ phptools-composer-require-php-cs-fixer:
 	docker compose exec phptools composer require friendsofphp/php-cs-fixer
 phptools-bash:
 	docker compose exec phptools bash
+phptools-composer-delete:
+	rm -f ./phptools/composer.json
+	rm -f ./phptools/composer.lock
 
 # PSR12
 psr12:

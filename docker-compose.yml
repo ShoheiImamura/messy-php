@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3.8"
 volumes:
   db-store:
   vendor-store:
@@ -8,6 +8,8 @@ services:
     build:
       context: .
       dockerfile: ./infra/docker/phptools/Dockerfile
+      args:
+        - docker_php_version=${DOCKER_PHP_VERSION:-8.1}
     volumes:
       - type: bind
         source: ../${SRC_DIR:-src}

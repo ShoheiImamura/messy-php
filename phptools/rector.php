@@ -31,7 +31,7 @@ return static function (RectorConfig $rectorConfig): void {
 
     // define sets of rules
     $rectorConfig->sets([
-        SetList::DEAD_CODE,
+        // SetList::DEAD_CODE,
         // SetList::CODE_QUALITY,
         // SetList::NAMING,
         // LevelSetList::UP_TO_PHP_81,
